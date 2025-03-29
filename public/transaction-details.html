@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <!-- Back Button -->
+        <a href="dashboard.html" class="text-gray-400 text-sm flex items-center">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+        </a>
+
+        <!-- Transaction Details Card -->
+        <div class="bg-gray-800 p-6 rounded-lg mt-4">
+            <h1 class="text-xl font-bold text-white mb-2">Transaction Details</h1>
+            <hr class="border-gray-600 mb-4">
+
+            <div class="text-lg text-gray-300">
+                <p><strong>Type:</strong> <span id="transactionType"></span></p>
+                <p><strong>Amount:</strong> <span id="transactionAmount"></span></p>
+                <p><strong>Date:</strong> <span id="transactionDate"></span></p>
+                <p><strong>Time:</strong> <span id="transactionTime"></span></p>
+                <p><strong>Status:</strong> <span class="text-green-500 font-semibold">Successful</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to Get URL Parameters -->
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                type: params.get('type'),
+                amount: params.get('amount'),
+                date: params.get('date'),
+                time: params.get('time'),
+            };
+        }
+
+        // Set transaction details from URL
+        const { type, amount, date, time } = getQueryParams();
+        document.getElementById('transactionType').innerText = type || 'N/A';
+        document.getElementById('transactionAmount').innerText = amount ? `₦${amount}` : 'N/A';
+        document.getElementById('transactionDate').innerText = date || 'N/A';
+        document.getElementById('transactionTime').innerText = time || 'N/A';
+    </script>
+</body>
+</html>

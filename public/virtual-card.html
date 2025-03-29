@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body { background-color: #121212; color: #ffffff; }
+        .container { max-width: 500px; margin: auto; }
+        .card { background: linear-gradient(135deg, #6e44ff, #8b5cf6); }
+        .input-field { background-color: #1f1f1f; border: 1px solid #444; }
+    </style>
+</head>
+<body class="p-6">
+    <div class="container bg-gray-900 p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold mb-4">Virtual Card</h2>
+
+        <!-- Existing Virtual Card -->
+        <div class="card p-4 rounded-lg mb-4 text-white shadow-lg">
+            <p class="text-lg">**** **** **** 1234</p>
+            <p class="text-sm">Valid: 12/27</p>
+            <p class="text-sm">CVV: ***</p>
+        </div>
+
+        <button class="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded text-white mb-6">
+            Generate New Card
+        </button>
+
+        <!-- Create New Virtual Card -->
+        <h3 class="text-lg font-semibold mb-4">Create a Virtual Card</h3>
+
+        <label class="block mb-2">Card Type</label>
+        <select class="w-full p-2 mb-4 input-field rounded">
+            <option>Visa</option>
+            <option>MasterCard</option>
+        </select>
+
+        <label class="block mb-2">Currency</label>
+        <select class="w-full p-2 mb-4 input-field rounded">
+            <option>USD</option>
+            <option>EUR</option>
+            <option>NGN</option>
+        </select>
+
+        <label class="block mb-2">Amount</label>
+        <input type="number" class="w-full p-2 mb-4 input-field rounded" placeholder="Enter amount">
+
+        <button id="createCard" class="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded text-white">
+            Create Virtual Card
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('createCard').addEventListener('click', function() {
+            alert('Processing your virtual card request...');
+            setTimeout(() => {
+                alert('Virtual Card Created Successfully!');
+                window.location.reload();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

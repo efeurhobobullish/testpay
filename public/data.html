@@ -1,0 +1,196 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Data Purchase
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   .provider-img {
+     transition: border-color 0.3s;
+   }
+   .provider-img.selected {
+     border-color: #7c3aed;
+   }
+  </style>
+  <script>
+   function updatePayButton() {
+     const amountSelect = document.getElementById('amount-select');
+     const payButton = document.getElementById('pay-button');
+     const selectedAmount = amountSelect.value;
+     if (selectedAmount !== '- Select One -') {
+       payButton.textContent = `Pay ₦${selectedAmount}`;
+     } else {
+       payButton.textContent = 'Pay';
+     }
+   }
+
+   function selectProvider(img) {
+     const images = document.querySelectorAll('.provider-img');
+     images.forEach(image => image.classList.remove('selected'));
+     img.classList.add('selected');
+   }
+  </script>
+ </head>
+ <body class="bg-gray-900 text-white min-h-screen flex flex-col justify-between">
+  <header class="flex items-center p-4">
+   <a class="text-white text-2xl" href="services.html">
+    <i class="fas fa-arrow-left">
+    </i>
+   </a>
+   <h1 class="ml-4 text-xl font-semibold">
+    Data
+   </h1>
+   <div class="ml-auto flex items-center">
+    <span class="mr-2">
+     Balance: ₦0
+    </span>
+    <button class="text-white text-2xl">
+     <i class="fas fa-moon">
+     </i>
+    </button>
+   </div>
+  </header>
+  <main class="flex-grow p-4">
+   <div class="bg-gray-800 p-4 rounded-lg mb-4">
+    <label class="block mb-2">
+     Select a Provider
+     <span class="text-red-500">
+      *
+     </span>
+    </label>
+    <div class="flex justify-between">
+     <img alt="MTN logo" class="w-12 h-12 rounded-lg border-4 border-transparent provider-img" height="50" onclick="selectProvider(this)" src="assets/mtn.svg" width="50"/>
+     <img alt="9mobile logo" class="w-12 h-12 rounded-lg border-4 border-transparent provider-img" height="50" onclick="selectProvider(this)" src="assets/9mobile.svg" width="50"/>
+     <img alt="Glo logo" class="w-12 h-12 rounded-lg border-4 border-transparent provider-img" height="50" onclick="selectProvider(this)" src="assets/glo.svg" width="50"/>
+     <img alt="Airtel logo" class="w-12 h-12 rounded-lg border-4 border-transparent provider-img" height="50" onclick="selectProvider(this)" src="assets/airtel.svg" width="50"/>
+    </div>
+   </div>
+   <div class="bg-gray-800 p-4 rounded-lg mb-4">
+    <label class="block mb-2">
+     Select Data Amount
+     <span class="text-red-500">
+      *
+     </span>
+    </label>
+    <select class="w-full p-2 bg-gray-900 text-white rounded-lg border border-purple-500" id="amount-select" onchange="updatePayButton()">
+     <option>
+      - Select One -
+     </option>
+     <option>
+      100
+     </option>
+     <option>
+      200
+     </option>
+     <option>
+      300
+     </option>
+     <option>
+      400
+     </option>
+     <option>
+      500
+     </option>
+     <option>
+      600
+     </option>
+     <option>
+      700
+     </option>
+     <option>
+      800
+     </option>
+     <option>
+      900
+     </option>
+    </select>
+   </div>
+   <div class="bg-gray-800 p-4 rounded-lg mb-4">
+    <label class="block mb-2">
+     Select Data Plan
+     <span class="text-red-500">
+      *
+     </span>
+    </label>
+    <select class="w-full p-2 bg-gray-900 text-white rounded-lg border border-purple-500">
+     <option>
+      - Select One -
+     </option>
+     <option>
+      100MB
+     </option>
+     <option>
+      200MB
+     </option>
+     <option>
+      300MB
+     </option>
+     <option>
+      400MB
+     </option>
+     <option>
+      500MB
+     </option>
+     <option>
+      600MB
+     </option>
+     <option>
+      700MB
+     </option>
+     <option>
+      800MB
+     </option>
+     <option>
+      900MB
+     </option>
+    </select>
+   </div>
+   <div class="bg-gray-800 p-4 rounded-lg mb-4">
+    <label class="block mb-2">
+     Phone Number
+     <span class="text-red-500">
+      *
+     </span>
+    </label>
+    <input class="w-full p-2 bg-gray-900 text-white rounded-lg mb-2" placeholder="Enter recipient phone number" type="text"/>
+    <button class="flex items-center justify-center w-full p-2 bg-gray-700 text-white rounded-lg">
+     <i class="fas fa-phone-alt mr-2">
+     </i>
+     Use my number
+    </button>
+   </div>
+   <button class="w-full p-4 bg-purple-600 text-white rounded-lg" id="pay-button">
+    Pay
+   </button>
+  </main>
+     <!-- Bottom Navigation (V Bar) -->
+   <div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-white">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html" class="text-purple-600">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html" class="text-white">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html"class="text-white">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+
+  </footer>
+ </body>
+</html>

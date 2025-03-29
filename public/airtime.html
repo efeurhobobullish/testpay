@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpirePay - Fast & Reliable VTU Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Header -->
+    <header class="bg-gray-800 py-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <img src="assets/logo.png" alt="EmpirePay Logo" class="w-16 h-16 rounded-full shadow-lg ring-4 ring-purple-500">
+            <nav class="hidden md:flex space-x-6">
+                <a href="#features" class="hover:text-purple-400">Features</a>
+                <a href="#testimonials" class="hover:text-purple-400">Testimonials</a>
+                <a href="#contact" class="hover:text-purple-400">Contact</a>
+            </nav>
+            <a href="signup.html" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20">
+        <h1 class="text-4xl font-bold">Fast & Reliable VTU Services</h1>
+        <p class="mt-4 text-gray-400">Instant airtime, data, cable, and electricity payments.</p>
+        <a href="sign-in.html" class="mt-6 inline-block bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg">Get Started</a>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold">Airtime & Data</h3>
+                <p class="text-gray-400 mt-2">Buy cheap and instant data & airtime.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold">Cable TV Subscription</h3>
+                <p class="text-gray-400 mt-2">Renew your DSTV, GOTV & Startimes.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold">Electricity Bills</h3>
+                <p class="text-gray-400 mt-2">Pay your electricity bills with ease.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16">
+        <h2 class="text-center text-3xl font-bold">What Our Users Say</h2>
+        <div class="overflow-hidden relative mt-8 max-w-3xl mx-auto">
+            <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+                <div class="min-w-full text-center p-6">
+                    <img src="assets/user1.jpg" alt="User 1" class="w-20 h-20 mx-auto rounded-full ring-4 ring-purple-500">
+                    <p class="mt-4 text-gray-300">"EmpirePay is super fast and reliable. Highly recommended!"</p>
+                </div>
+                <div class="min-w-full text-center p-6">
+                    <img src="assets/user2.jpg" alt="User 2" class="w-20 h-20 mx-auto rounded-full ring-4 ring-purple-500">
+                    <p class="mt-4 text-gray-300">"Best VTU service ever. My transactions are instant."</p>
+                </div>
+                <div class="min-w-full text-center p-6">
+                    <img src="assets/user3.jpg" alt="User 3" class="w-20 h-20 mx-auto rounded-full ring-4 ring-purple-500">
+                    <p class="mt-4 text-gray-300">"Customer support is amazing. I love EmpirePay!"</p>
+                </div>
+                <div class="min-w-full text-center p-6">
+                    <img src="assets/user4.jpg" alt="User 4" class="w-20 h-20 mx-auto rounded-full ring-4 ring-purple-500">
+                    <p class="mt-4 text-gray-300">"I’ve never had a failed transaction. 100% reliability."</p>
+                </div>
+                <div class="min-w-full text-center p-6">
+                    <img src="assets/user5.jpg" alt="User 5" class="w-20 h-20 mx-auto rounded-full ring-4 ring-purple-500">
+                    <p class="mt-4 text-gray-300">"Fast and seamless! Highly recommend EmpirePay."</p>
+                </div>
+            </div>
+            <div class="flex justify-center mt-4 space-x-3" id="indicator-container"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-800">
+        <h2 class="text-center text-3xl font-bold">Contact Us</h2>
+        <div class="text-center mt-4">
+            <p>Email: support@empirepay.com</p>
+            <p>Location: Lagos, Nigeria</p>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2348078582627" class="fixed bottom-5 right-5 bg-green-500 text-white p-4 rounded-full shadow-lg text-lg hover:bg-green-600 flex items-center space-x-2">
+        <span>💬</span>
+        <span>Chat</span>
+    </a>
+
+    <!-- Auto-Scrolling Testimonials Script -->
+    <script>
+        let index = 0;
+        const slides = document.getElementById('testimonial-slider');
+        const numTestimonials = slides.children.length;
+        const indicatorContainer = document.getElementById('indicator-container');
+
+        // Create dynamic indicators
+        for (let i = 0; i < numTestimonials; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('w-3', 'h-3', 'bg-gray-500', 'rounded-full');
+            if (i === 0) dot.classList.add('bg-purple-500');
+            dot.dataset.index = i;
+            dot.addEventListener('click', () => goToTestimonial(i));
+            indicatorContainer.appendChild(dot);
+        }
+
+        function updateIndicators() {
+            indicatorContainer.childNodes.forEach((dot, i) => {
+                dot.classList.toggle('bg-purple-500', i === index);
+                dot.classList.toggle('bg-gray-500', i !== index);
+            });
+        }
+
+        function nextTestimonial() {
+            index = (index + 1) % numTestimonials;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            updateIndicators();
+        }
+
+        function goToTestimonial(i) {
+            index = i;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            updateIndicators();
+        }
+
+        setInterval(nextTestimonial, 2000);
+    </script>
+
+</body>
+</html>

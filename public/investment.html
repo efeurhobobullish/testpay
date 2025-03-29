@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment | EmpirePay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background: #0A0A0A;
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            transition: transform 0.2s;
+        }
+        .glass:hover {
+            transform: scale(1.02);
+        }
+        .selected {
+            border: 2px solid #a855f7;
+            box-shadow: 0 0 10px #a855f7;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Back Button -->
+    <div class="p-4">
+        <a href="dashboard.html" class="text-purple-400 hover:text-purple-300">
+            <i class="fas fa-arrow-left text-xl"></i> Back
+        </a>
+    </div>
+    </div>
+    <!-- Investment Section -->
+    <div class="flex flex-col items-center justify-center min-h-screen px-4">
+        <h1 class="text-2xl font-semibold mb-6">Choose an Investment Plan</h1>
+
+        <!-- Investment Options -->
+        <div class="grid grid-cols-2 gap-6 w-full max-w-2xl">
+            <div class="glass p-6 rounded-lg text-center cursor-pointer investment-option" data-plan="daily">
+                <i class="fas fa-calendar-day text-3xl text-purple-400"></i>
+                <h2 class="text-lg mt-3">Daily Plan</h2>
+                <p class="text-gray-400 text-sm">5% ROI per day</p>
+            </div>
+            <div class="glass p-6 rounded-lg text-center cursor-pointer investment-option" data-plan="weekly">
+                <i class="fas fa-calendar-week text-3xl text-purple-400"></i>
+                <h2 class="text-lg mt-3">Weekly Plan</h2>
+                <p class="text-gray-400 text-sm">15% ROI per week</p>
+            </div>
+            <div class="glass p-6 rounded-lg text-center cursor-pointer investment-option" data-plan="monthly">
+                <i class="fas fa-calendar-alt text-3xl text-purple-400"></i>
+                <h2 class="text-lg mt-3">Monthly Plan</h2>
+                <p class="text-gray-400 text-sm">40% ROI per month</p>
+            </div>
+            <div class="glass p-6 rounded-lg text-center cursor-pointer investment-option" data-plan="crypto">
+                <i class="fas fa-bitcoin text-3xl text-yellow-400"></i>
+                <h2 class="text-lg mt-3">Crypto Plan</h2>
+                <p class="text-gray-400 text-sm">2x Returns</p>
+            </div>
+            </div>
+
+        <!-- Investment Form -->
+        <div class="w-full max-w-lg bg-gray-900 rounded-lg p-6 mt-8 shadow-lg">
+            <h3 class="text-gray-300 mb-4">Investment Details</h3>
+            <form id="investmentForm">
+                <input type="hidden" id="selectedPlan" name="plan">
+                <label class="block mb-2 text-gray-400">Amount (₦)</label>
+                <input type="number" id="amount" class="w-full p-3 rounded bg-gray-800 text-white mb-4 outline-none" placeholder="Enter amount" required>
+
+                <p class="text-gray-400 mb-4">Expected Returns: <span id="returns" class="text-purple-400">₦0</span></p>
+
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white p-3 rounded transition-all">
+                    Invest Now
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-white">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html" class="text-purple-600">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html" class="text-white">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html" class="text-white">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+    
+
+    <script>
+        document.querySelectorAll(".investment-option").forEach(button => {
+            button.addEventListener("click", function() {
+                document.querySelectorAll(".investment-option").forEach(btn => btn.classList.remove("selected"));
+                this.classList.add("selected");
+                document.getElementById("selectedPlan").value = this.dataset.plan;
+                calculateReturns();
+            });
+        });
+
+        function calculateReturns() {
+            let plan = document.getElementById("selectedPlan").value;
+            let amount = parseFloat(document.getElementById("amount").value) || 0;
+            let returns = 0;
+
+            if (plan === "daily") returns = amount * 1.05;
+            if (plan === "weekly") returns = amount * 1.15;
+            if (plan === "monthly") returns = amount * 1.40;
+            if (plan === "crypto") returns = amount * 2;
+
+            document.getElementById("returns").innerText = `₦${returns.toFixed(2)}`;
+        }
+
+        document.getElementById("amount").addEventListener("input", calculateReturns);
+
+        document.getElementById("investmentForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Investment successful! Redirecting...");
+            window.location.href = "dashboard.html";
+        });
+    </script>
+
+</body>
+</html>

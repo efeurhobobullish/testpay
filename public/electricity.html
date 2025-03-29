@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .selected { border: 3px solid #9333ea; box-shadow: 0 0 10px #9333ea; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-white bg-opacity-10 backdrop-blur-lg p-6 rounded-lg shadow-xl w-full max-w-md">
+        <div class="flex items-center justify-between mb-4">
+            <a href="dashboard.html" class="text-white text-xl"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="text-lg font-semibold text-white">Electricity Payment</h1>
+            <span></span>
+        </div>
+
+        <h2 class="text-white mb-2">Select Electricity Provider</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <img src="assets/ikeja.png" class="provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Ikeja">
+            <img src="assets/eko.png" class="provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Eko">
+            <img src="assets/abuja.png" class="provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Abuja">
+            <img src="assets/kano.png" class="provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Kano">
+        </div>
+
+        <input type="hidden" id="selectedProvider">
+        
+        <div class="mt-4 space-y-4">
+            <label class="block text-white font-semibold">Meter Number</label>
+            <input type="text" class="w-full p-3 bg-transparent border border-gray-300 text-white rounded-lg" placeholder="Enter Meter Number">
+
+            <label class="block text-white font-semibold">Enter Amount</label>
+            <input type="number" class="w-full p-3 bg-transparent border border-gray-300 text-white rounded-lg" placeholder="Enter amount">
+
+            <button id="payBtn" onclick="startLoading()" class="w-full bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-lg mt-2 flex items-center justify-center">
+                <span id="btnText"><i class="fas fa-bolt mr-2"></i> Pay Bill</span>
+                <span id="spinner" class="hidden"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+<div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-white">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html" class="text-purple-600">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html" class="text-white">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html" class="text-white">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+    
+    <script>
+        document.querySelectorAll(".provider").forEach(provider => {
+            provider.addEventListener("click", () => {
+                document.querySelectorAll(".provider").forEach(p => p.classList.remove("selected"));
+                provider.classList.add("selected");
+                document.getElementById("selectedProvider").value = provider.getAttribute("data-value");
+            });
+        });
+
+        function startLoading() {
+            let btn = document.getElementById("payBtn");
+            let btnText = document.getElementById("btnText");
+            let spinner = document.getElementById("spinner");
+
+            btn.disabled = true;
+            btnText.classList.add("hidden");
+            spinner.classList.remove("hidden");
+
+            setTimeout(() => {
+                window.location.href = "success.html"; 
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

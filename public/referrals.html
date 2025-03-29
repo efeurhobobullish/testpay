@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Referrals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <div class="fixed top-0 left-0 right-0 bg-gray-800 p-4 flex items-center">
+        <a href="rewards.html" class="text-gray-400 text-xl">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 class="text-xl font-bold ml-4">My Referrals</h1>
+    </div>
+
+    <div class="container mx-auto p-6 mt-16">
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <h2 class="text-lg font-bold mb-2">Referred Users</h2>
+            <p class="text-gray-400 mb-4">Below is a list of friends you have referred.</p>
+
+            <ul id="referral-list" class="space-y-3">
+                <!-- Referral List Will Be Populated Here -->
+            </ul>
+        </div>
+    </div>
+<div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-white">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html" class="text-white">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html" class="text-purple-600">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html" class="text-white">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+    
+    <!-- Sample Referral Data Script -->
+    <script>
+        const referrals = [
+            { name: "John Doe", status: "Completed" },
+            { name: "Sarah Smith", status: "Pending" },
+            { name: "Michael Brown", status: "Completed" }
+        ];
+
+        function loadReferrals() {
+            const referralList = document.getElementById("referral-list");
+            referralList.innerHTML = referrals.map(ref => `
+                <li class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                    <span>${ref.name}</span>
+                    <span class="text-${ref.status === "Completed" ? "green" : "yellow"}-400">${ref.status}</span>
+                </li>
+            `).join('');
+        }
+
+        loadReferrals();
+    </script>
+
+</body>
+</html>

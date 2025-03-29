@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Pin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="flex items-center p-4 bg-gray-800">
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 class="flex-grow text-center text-lg font-semibold">Transaction Pin</h1>
+        <button class="text-white">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="bg-gray-800 p-6 rounded-lg w-11/12 max-w-md">
+            <form id="pinForm">
+                <div class="mb-4">
+                    <label for="old-pin" class="block text-sm font-medium mb-1">Old pin<span class="text-red-500">*</span></label>
+                    <input type="password" id="old-pin" class="w-full p-2 bg-gray-700 rounded text-white" placeholder="Enter your old pin" maxlength="4" pattern="\d{4}" required>
+                </div>
+                <div class="mb-6">
+                    <label for="new-pin" class="block text-sm font-medium mb-1">New pin<span class="text-red-500">*</span></label>
+                    <input type="password" id="new-pin" class="w-full p-2 bg-gray-700 rounded text-white" placeholder="4 digits" maxlength="4" pattern="\d{4}" required>
+                </div>
+                <button type="submit" class="w-full py-2 bg-purple-600 rounded text-white font-semibold">Update</button>
+            </form>
+            <div id="notification" class="mt-4 text-red-500 hidden">You cannot use the old pin as the new pin.</div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around items-center">
+        <a href="dashboard.html">
+            <i class="fas fa-th-large"></i>
+        </a>
+        <a href="services.html">
+            <i class="fas fa-exchange-alt"></i>
+        </a>
+        <a href="settings.html" class="text-purple-600">
+            <i class="fas fa-user-cog"></i>
+        </a>
+        <a href="support.html">
+            <i class="fas fa-headset"></i>
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('pinForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const oldPin = document.getElementById('old-pin').value;
+            const newPin = document.getElementById('new-pin').value;
+            const notification = document.getElementById('notification');
+
+            if (oldPin === newPin) {
+                notification.classList.remove('hidden');
+            } else {
+                notification.classList.add('hidden');
+                // Proceed with form submission or further processing
+                alert('Pin updated successfully!');
+            }
+        });
+    </script>
+</body>
+</html>

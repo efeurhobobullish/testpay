@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex flex-col items-center p-4">
+        <!-- Header -->
+        <div class="w-full flex items-center justify-between mb-6">
+            <a class="text-white text-2xl" href="dashboard.html">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="text-lg font-semibold">Profile</h1>
+            <button id="theme-toggle" class="text-white text-xl">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="flex flex-col items-center mb-6">
+            <div class="relative w-20 h-20">
+                <label for="imageUpload" class="cursor-pointer">
+                    <img id="profileImage" src="https://via.placeholder.com/100" 
+                         class="w-20 h-20 rounded-full border-4 border-gray-700 object-cover" alt="Profile Picture">
+                    <div class="absolute bottom-0 right-0 bg-purple-600 p-2 rounded-full">
+                        <i class="fas fa-camera text-white text-xs"></i>
+                    </div>
+                </label>
+                <input type="file" id="imageUpload" class="hidden" accept="image/*">
+            </div>
+
+            <h2 class="text-lg font-semibold mt-2">efeuhobopatricia</h2>
+            <p class="text-gray-400">08078582627</p>
+
+            <button id="uploadBtn" class="mt-4 px-3 py-1 bg-purple-600 text-white rounded-full flex items-center text-sm">
+                <i class="fas fa-camera mr-2"></i> Upload Image
+            </button>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="w-full max-w-md bg-gray-800 rounded-lg p-4 mb-6">
+            <h3 class="text-gray-400 mb-4">Account Settings</h3>
+            <div class="space-y-4">
+                <a href="kycstatus.html" class="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span>Kyc Status</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            <div class="space-y-4">
+                <a href="verifykyc.html" class="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span>Verify Kyc</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            <div class="space-y-4">
+                <a href="update-password.html" class="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span>Update Password</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="change-pin.html" class="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span>Change PIN</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="theme.html" class="flex justify-between items-center py-2">
+                    <span>Theme</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex space-x-4">
+            <a href="logout.html" class="px-3 py-1 bg-purple-600 text-white rounded-full flex items-center text-sm">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+            <a href="delete-account.html" class="px-3 py-1 bg-red-600 text-white rounded-full flex items-center text-sm">
+                <i class="fas fa-trash-alt mr-2"></i> Delete Account
+            </a>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+            <a href="dashboard.html" class="text-white">
+                <i class="fas fa-th-large text-2xl"></i>
+                <p class="text-xs">Dashboard</p>
+            </a>
+            <a href="services.html" class="text-white">
+                <i class="fas fa-exchange-alt text-2xl"></i>
+                <p class="text-xs">Services</p>
+            </a>
+            <a href="rewards.html" class="text-white">
+                <i class="fas fa-gift text-2xl"></i>
+                <p class="text-xs">Rewards</p>
+            </a>
+            <a href="settings.html" class="text-purple-600">
+                <i class="fas fa-user-cog text-2xl"></i>
+                <p class="text-xs">Settings</p>
+            </a>
+            <a href="support.html" class="text-white">
+                <i class="fas fa-headset text-2xl"></i>
+                <p class="text-xs">Support</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

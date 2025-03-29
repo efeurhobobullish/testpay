@@ -1,0 +1,91 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white h-screen flex items-center justify-center">
+    <div class="w-full max-w-sm md:max-w-md lg:max-w-lg p-10 space-y-6">
+        <div class="flex justify-between items-center">
+            <button class="text-gray-400">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="text-gray-400">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <h2 class="text-3xl font-bold">Sign Up</h2>
+        <p class="text-gray-400">Create an account with EmpirePay...</p>
+
+        <form class="space-y-4" id="signup-form">
+            <div>
+                <label class="block text-sm font-medium mb-1" for="username">Username <span class="text-red-500">*</span></label>
+                <input class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600" type="text" id="username" placeholder="Enter your fullname" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1" for="email">E-mail Address <span class="text-red-500">*</span></label>
+                <input class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600" type="email" id="email" placeholder="Enter e-mail address" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1" for="phone">Phone Number <span class="text-red-500">*</span></label>
+                <input class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600" type="tel" id="phone" placeholder="Enter your phonenumber" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1" for="password">Password <span class="text-red-500">*</span></label>
+                <div class="relative">
+                    <input class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600" type="password" id="password" placeholder="> 7 characters" required>
+                    <button type="button" class="absolute inset-y-0 right-0 px-3 text-gray-400" onclick="togglePasswordVisibility()">
+                        <i id="password-toggle" class="fas fa-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="w-full py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600" type="submit">Submit</button>
+        </form>
+
+        <p id="message" class="text-center text-sm mt-2"></p>
+
+        <p class="text-center text-gray-400">Already have an account? <a href="/login" class="text-blue-500">Login</a></p>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.getElementById('password-toggle');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.classList.remove('fa-eye-slash');
+                passwordToggle.classList.add('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.classList.remove('fa-eye');
+                passwordToggle.classList.add('fa-eye-slash');
+            }
+        }
+
+        document.getElementById("signup-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+
+            if (!username || !email || !phone || !password) {
+                message.style.color = "red";
+                message.textContent = "All fields are required!";
+                return;
+            }
+
+            const response = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, email, phone, password })
+            });
+
+            const data = await response.json();
+            message.style.color = response.ok ? "green" : "red";
+            message.textContent = data.message || data.error;
+        });
+    </script>
+</body>
+</html>

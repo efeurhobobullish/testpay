@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cable Subscription</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .selected {
+            border: 3px solid #9333ea; /* Purple glow */
+            box-shadow: 0 0 10px #9333ea;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-white bg-opacity-10 backdrop-blur-lg p-6 rounded-lg shadow-xl w-full max-w-md">
+        <div class="flex items-center justify-between mb-4">
+            <a href="dashboard.html" class="text-white text-xl"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="text-lg font-semibold text-white">Cable Subscription</h1>
+            <span></span>
+        </div>
+
+        <h2 class="text-white mb-2">Select Cable Provider</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <img src="assets/dstv.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="DStv">
+            <img src="assets/gotv.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="GOtv">
+            <img src="assets/startimes.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="StarTimes">
+            <img src="assets/showmax.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Showmax">
+            <img src="assets/tstv.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="TStv">
+            <img src="assets/mytv.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="MyTV">
+            <img src="assets/consat.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="Consat">
+            <img src="assets/play.png" class="cable-provider w-20 h-20 p-2 bg-white rounded-lg cursor-pointer" data-value="PlayTV">
+        </div>
+
+        <input type="hidden" id="selectedProvider">
+        
+        <div class="mt-4 space-y-4">
+            <label class="block text-white font-semibold">Smart Card Number</label>
+            <input type="text" class="w-full p-3 bg-transparent border border-gray-300 text-white rounded-lg" placeholder="Enter Smart Card Number">
+
+            <label class="block text-white font-semibold">Select Package</label>
+            <select class="w-full p-3 bg-transparent border border-gray-300 text-white rounded-lg" id="packageSelect">
+                <option value="">-- Select a Package --</option>
+                <option value="basic">Basic Package</option>
+                <option value="premium">Premium Package</option>
+                <option value="family">Family Package</option>
+                <option value="compact">Compact Plus</option>
+            </select>
+
+            <button id="payBtn" onclick="startLoading()" class="w-full bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-lg mt-2 flex items-center justify-center">
+                <span id="btnText"><i class="fas fa-tv mr-2"></i> Pay Subscription</span>
+                <span id="spinner" class="hidden"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Handle Provider Selection
+        const providers = document.querySelectorAll(".cable-provider");
+        providers.forEach(provider => {
+            provider.addEventListener("click", () => {
+                providers.forEach(p => p.classList.remove("selected")); // Remove previous selection
+                provider.classList.add("selected");
+                document.getElementById("selectedProvider").value = provider.getAttribute("data-value");
+            });
+        });
+
+        function startLoading() {
+            let btn = document.getElementById("payBtn");
+            let btnText = document.getElementById("btnText");
+            let spinner = document.getElementById("spinner");
+
+            btn.disabled = true;
+            btnText.classList.add("hidden");
+            spinner.classList.remove("hidden");
+
+            setTimeout(() => {
+                window.location.href = "success.html"; 
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

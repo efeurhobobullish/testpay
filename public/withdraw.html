@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fund Wallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Top Navigation -->
+    <div class="p-4 flex items-center">
+        <a href="dashboard.html" class="text-white text-2xl"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="text-xl font-bold ml-4">Fund Wallet</h1>
+    </div>
+
+    <!-- Fund Wallet Section -->
+    <div class="container mx-auto p-4">
+        <label class="block mb-2">Enter Amount (₦)</label>
+        <input type="number" id="amount" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700" placeholder="Enter amount" oninput="updatePayButton()">
+
+        <button id="payButton" onclick="payWithPaystack()" class="w-full bg-purple-600 text-white py-2 rounded mt-4">Pay</button>
+    </div>
+
+    <!-- Bottom Navbar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-purple-600">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+
+
+    <script>
+        async function getUserEmail() {
+            const response = await fetch('/api/user-email'); // API to get user email
+            const data = await response.json();
+            return data.email;
+        }
+
+        function updatePayButton() {
+            let amount = document.getElementById('amount').value;
+            let payButton = document.getElementById('payButton');
+            payButton.textContent = amount ? `Pay ₦${amount}` : 'Pay';
+        }
+
+        async function payWithPaystack() {
+            let amount = document.getElementById('amount').value;
+            if (!amount || amount <= 0) {
+                alert('Enter a valid amount');
+                return;
+            }
+
+            let email = await getUserEmail();
+            let publicKey = "<YOUR_PUBLIC_KEY>"; // Replace with config.js value
+
+            let handler = PaystackPop.setup({
+                key: publicKey,
+                email: email,
+                amount: amount * 100, // Convert to Kobo for Paystack
+                currency: "NGN",
+                callback: function(response) {
+                    alert("Payment successful! Transaction ref: " + response.reference);
+                    window.location.href = "/wallet"; // Redirect to wallet
+                },
+                onClose: function() {
+                    alert("Transaction was not completed");
+                }
+            });
+
+            handler.openIframe();
+        }
+    </script>
+
+</body>
+</html>

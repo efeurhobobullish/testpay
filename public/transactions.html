@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <!-- Back Button -->
+        <a href="dashboard.html" class="text-gray-400 text-sm flex items-center">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+        </a>
+
+        <!-- Transactions Title -->
+        <h1 class="text-2xl font-bold text-white mt-4">Transaction History</h1>
+        <p class="text-gray-400 text-sm">View your recent transactions below.</p>
+
+        <!-- Transactions List -->
+        <div class="mt-4 space-y-4" id="transactionsList">
+            <!-- Transactions will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Sample transaction data
+        const transactions = [
+            { id: 1, type: "Airtime Recharge", amount: "-200", date: "Feb 27, 2025", time: "2:30 PM" },
+            { id: 2, type: "Purchased Data", amount: "+500", date: "Feb 26, 2025", time: "6:15 PM" },
+            { id: 3, type: "Withdrawn to Opay", amount: "-10000", date: "Feb 25, 2025", time: "10:45 AM" },
+            { id: 4, type: "Electricity Bill Payment", amount: "-2500", date: "Feb 24, 2025", time: "4:10 PM" },
+            { id: 5, type: "Bank Transfer", amount: "+5000", date: "Feb 23, 2025", time: "11:00 AM" }
+        ];
+
+        // Generate transactions dynamically
+        const transactionsList = document.getElementById("transactionsList");
+        transactions.forEach(transaction => {
+            const transactionItem = document.createElement("a");
+            transactionItem.href = `transaction-details.html?id=${transaction.id}&type=${encodeURIComponent(transaction.type)}&amount=${transaction.amount}&date=${encodeURIComponent(transaction.date)}&time=${encodeURIComponent(transaction.time)}`;
+            transactionItem.classList = "flex justify-between items-center bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition";
+            transactionItem.innerHTML = `
+                <div>
+                    <p class="text-white font-medium">${transaction.type}</p>
+                    <p class="text-gray-400 text-sm">${transaction.date} • ${transaction.time}</p>
+                </div>
+                <span class="${transaction.amount.includes('-') ? 'text-red-500' : 'text-green-500'} font-semibold">₦${transaction.amount}</span>
+            `;
+            transactionsList.appendChild(transactionItem);
+        });
+    </script>
+</body>
+</html>

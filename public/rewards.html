@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <div class="fixed top-0 left-0 right-0 bg-gray-800 p-4 flex items-center">
+        <a href="dashboard.html" class="text-gray-400 text-xl">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 class="text-xl font-bold ml-4">Rewards</h1>
+    </div>
+
+    <div class="container mx-auto p-6 mt-16">
+        <!-- Referral Program -->
+        <div class="bg-gray-800 p-4 rounded-lg mb-6">
+            <h2 class="text-lg font-bold mb-2">Invite Friends & Earn</h2>
+            <p class="text-gray-400 mb-4">Share your referral link and earn rewards when your friends sign up.</p>
+            <div class="flex items-center bg-gray-700 p-3 rounded-lg">
+                <input id="referral-link" type="text" value="https://empiretech.biz.id/ref?user=yourID" class="flex-grow bg-gray-700 text-white outline-none">
+                <button onclick="copyReferralLink()" class="bg-purple-600 px-3 py-1 rounded-lg text-white ml-2">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <a href="referrals.html" class="block text-center mt-4 bg-purple-600 px-4 py-2 rounded-lg text-white">
+                Check Referrals
+            </a>
+        </div>
+
+        <!-- Task Section -->
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <h2 class="text-lg font-bold mb-2">Complete Tasks & Earn</h2>
+            <p class="text-gray-400 mb-4">Complete the tasks below to earn extra rewards.</p>
+            <ul class="space-y-3">
+                <li class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                    <span>Refer 5 Friends</span>
+                    <button class="bg-green-600 px-3 py-1 rounded-lg text-white">+₦100</button>
+                </li>
+                <li class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                    <span>Make Your First Transaction</span>
+                    <button class="bg-green-600 px-3 py-1 rounded-lg text-white">+₦100</button>
+                </li>
+                <li class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                    <span>Use the App for 10 Days</span>
+                    <button class="bg-green-600 px-3 py-1 rounded-lg text-white">+₦200</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div class="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 flex justify-around text-center text-gray-400">
+        <a href="dashboard.html" class="text-white">
+            <i class="fas fa-th-large text-2xl"></i>
+            <p class="text-xs">Dashboard</p>
+        </a>
+        <a href="services.html" class="text-white">
+            <i class="fas fa-exchange-alt text-2xl"></i>
+            <p class="text-xs">Services</p>
+        </a>
+        <a href="rewards.html" class="text-purple-600">
+            <i class="fas fa-gift text-2xl"></i>
+            <p class="text-xs">Rewards</p>
+        </a>
+        <a href="settings.html" class="text-white">
+            <i class="fas fa-user-cog text-2xl"></i>
+            <p class="text-xs">Settings</p>
+        </a>
+        <a href="support.html" class="text-white">
+            <i class="fas fa-headset text-2xl"></i>
+            <p class="text-xs">Support</p>
+        </a>
+    </div>
+    
+    <!-- Copy Referral Link Script -->
+    <script>
+        function copyReferralLink() {
+            var copyText = document.getElementById("referral-link");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Referral Link Copied!");
+        }
+    </script>
+
+</body>
+</html>
