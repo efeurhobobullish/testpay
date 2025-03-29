@@ -88,6 +88,12 @@ app.post("/api/payment", verifyToken, async (req, res) => {
   }
 });
 
+app.use(express.static(path.join(__dirname, "./public")));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/docs.html"))
+})
+
 app.get("/signup", (req, res) => res.sendFile(path.join(__dirname, "./public/signup.html")));
 app.get("/login", (req, res) => res.sendFile(path.join(__dirname, "./public/sign-in.html")));
 app.get("/airtime", (req, res) => res.sendFile(path.join(__dirname, "./public/airtime.html")));
