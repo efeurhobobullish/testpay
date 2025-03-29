@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const axios = require("axios");
 const path = require("path");
 const config = require("./config");
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -120,6 +120,4 @@ app.get("/updatePass", (req, res) => res.sendFile(path.join(__dirname, "./public
 app.get("/virtualCard", (req, res) => res.sendFile(path.join(__dirname, "./public/virtual-card.html")));
 app.get("/withdraw", (req, res) => res.sendFile(path.join(__dirname, "./public/withdraw.html")));
 
-app.listen(PORT, (req, res) => {
-    console.log(`server listening at port ${PORT}`)
-})
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
